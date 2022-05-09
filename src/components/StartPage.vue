@@ -7,7 +7,7 @@
 
         <!-- 시간 지연의 경우 회전 프로그레스 원 표시 -->
         <v-progress-circular
-          v-if="loading"
+          v-if="fnGetLoading"
           color="grey lighten-1"
           :width="7"
           :size="70"
@@ -41,14 +41,17 @@
 <script>
 export default {
   data() {
-    return {
-      loading: false,
-    };
+    return {};
   },
   methods: {
     fnDoGoogleLogin_Popup() {
       // 스토어에 있는 구글 계정 로그인 처리 요청
       this.$store.dispatch("fnDoGoogleLogin_Popup");
+    },
+  },
+  computed: {
+    fnGetLoading() {
+      return this.$store.getters.fnGetLoading;
     },
   },
 };
